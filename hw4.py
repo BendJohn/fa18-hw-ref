@@ -37,7 +37,15 @@ Example 2:
 		None
 """
 def alphabet_finder(s):
-	pass
+    if len(s) < 26:
+        return None
+    s = s.lower()
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    for i in range(len(s)):
+        if alphabet == '':
+            return s[:i]
+        alphabet = alphabet.replace(s[i:i + 1], '', 1)
+    return None
 
 
 """
