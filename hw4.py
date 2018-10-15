@@ -13,7 +13,22 @@ most_common_char
 Given an input string s, return the most common character in s.
 """
 def most_common_char(s):
-	pass
+    def mode(numbers):
+        mode = []
+        counts = {}
+        maxcount = 0
+        for number in numbers:
+            if number not in counts:
+                counts[number] = 0
+            counts[number] += 1
+            if counts[number] > maxcount:
+                maxcount = counts[number]
+
+        for number, count in counts.items():
+            if count == maxcount:
+                mode += number
+        return mode
+    return mode(s)
 
 
 """
@@ -107,7 +122,35 @@ Example 3:
 		False
 """
 def string_my_one_true_love(s):
-	pass
+    perfect = True;
+    beautiful = False;
+    counts = {}
+    nums = []
+    for letter in s:
+        if letter not in counts:
+            counts[letter] = 0
+        counts[letter] += 1
+    for count in counts:
+        nums.append(counts[count])
+    for i in range(len(nums)-1):
+        #print('comparing ' + str(nums[i]) + ' and ' + str(nums[i+1]))
+        if nums[i] != nums[i+1] or beautiful:
+            #print('they are unequal')
+            #print('perfect is ' + str(perfect) + ' and beautiful is ' + str(beautiful))
+            if perfect or beautiful:
+                if beautiful and nums[i] == nums[i+1]:
+                    return False
+                if nums[i] == nums[i+1]+1 or nums[i] == nums[i+1]-1:
+                    #print('nums are off by 1')
+                    if perfect == True:
+                        beautiful = True
+                    else:
+                        beautiful = False
+                    perfect = False
+                else:
+                    #print('nums are off by more than 1')
+                    return False
+    return True
 
 
 """
